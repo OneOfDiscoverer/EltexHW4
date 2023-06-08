@@ -10,5 +10,7 @@
 #include <strings.h>
 #include <signal.h>
 
+#define STR_LEN     256
+#define ARGV_LEN    32
 
 #endif
