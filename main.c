@@ -1,12 +1,13 @@
 #include "main.h"
 
 int main(int argc, char *argv[]){
-    __pid_t ch_pid;
+    
     while(1){
+        __pid_t ch_pid, tmpid;
         printf(":>");
         char buf[256];
         char *cargv[32];
-        int iter = 0;
+        int iter = 0, status;
         for(int i = 0; i < 32; i++){
             cargv[i] = 0;
         }
@@ -35,11 +36,9 @@ int main(int argc, char *argv[]){
                 printf("cant start\n");
             exit(0);
         }
-        int status;
-        __pid_t tmpid = wait(&status);
-        while(tmpid != ch_pid){
+        tmpid = wait(&status);
+        if(tmpid != ch_pid){
             printf("some another(%d) process was closed. Status %d \n", tmpid, status);
-            //tmpid = wait(status);
             kill(ch_pid, SIGKILL);
         }
     }
