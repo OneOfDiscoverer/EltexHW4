@@ -7,7 +7,7 @@ int main(int argc, char *argv[]){
         char buf[STR_LEN];
         char *cargv[ARGV_LEN];
         int iter = 0, status;
-        while(iter < 256){
+        while(iter < STR_LEN){
             buf[iter] = fgetc(stdin);
             if(buf[iter] == '\n') {
                 buf[iter] = 0;
